@@ -13,6 +13,7 @@ import {CanvasService} from "./shared/services/canvas.service";
 import {TableService} from "./shared/services/table.service";
 import { RendererComponent } from './shared/components/renderer/renderer.component';
 import {MapperService} from "./shared/services/mapper.service";
+import {appConfig} from "./apps/app.config";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,12 @@ import {MapperService} from "./shared/services/mapper.service";
     MaterialModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [TableService, CanvasService, MapperService],
+  providers: [
+    TableService,
+    CanvasService,
+    MapperService,
+    { provide: 'config', useValue: appConfig }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
