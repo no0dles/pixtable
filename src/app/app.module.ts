@@ -12,13 +12,15 @@ import { MaterialModule } from '@angular/material';
 import {CanvasService} from "./shared/services/canvas.service";
 import {TableService} from "./shared/services/table.service";
 import { RendererComponent } from './shared/components/renderer/renderer.component';
+import { RunningTextComponent } from './running-text/running-text.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TetrisComponent,
     AppsComponent,
-    RendererComponent
+    RendererComponent,
+    RunningTextComponent
   ],
   imports: [
     BrowserModule,

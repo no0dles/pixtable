@@ -17,7 +17,8 @@ export class AppsComponent implements OnInit {
     this.apps = [
       { name: "Christmas Tree", path: "christmas-tree", description: "" },
       { name: "Tetris", path: "tetris", description: "" },
-      { name: "Paint", path: "paint", description: "" }
+      { name: "Paint", path: "paint", description: "" },
+      { name: "Running Text", path: "running-text", description: "" }
     ];
   }
 
