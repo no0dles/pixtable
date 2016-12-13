@@ -32,11 +32,7 @@ export class RendererComponent implements OnInit {
               private canvasService: CanvasService) {
     this.renderers = [];
 
-    for(let x = 0; x < RendererComponent.WIDTH; x++) {
-      for(let y = 0; y < RendererComponent.HEIGHT; y++) {
-        this.setColor(x, y, { r: 255, g: 255, b: 255}, 1);
-      }
-    }
+    this.clear({ r: 255, g: 255, b: 255 }, 1);
   }
 
   public ngOnInit(): void {
@@ -74,6 +70,14 @@ export class RendererComponent implements OnInit {
     this.lastUpdate = currentUpdate;
 
     requestAnimationFrame(() => this.updateLoop());
+  }
+
+  public clear(color: IColor, brightness: number) {
+    for(let x = 0; x < RendererComponent.WIDTH; x++) {
+      for(let y = 0; y < RendererComponent.HEIGHT; y++) {
+        this.setColor(x, y, color, brightness);
+      }
+    }
   }
 
   public setColor(x: number, y: number, color: IColor, brightness: number = undefined) {
