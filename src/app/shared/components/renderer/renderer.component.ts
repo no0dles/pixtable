@@ -5,6 +5,7 @@ import {CanvasService} from "../../services/canvas.service";
 import {ActivatedRoute} from "@angular/router";
 import {IPixel} from "../../models/pixel";
 import {IColor} from "../../models/color";
+import {View} from "../../models/view";
 
 @Component({
   selector: 'app-renderer',
@@ -12,9 +13,6 @@ import {IColor} from "../../models/color";
   styleUrls: ['./renderer.component.css']
 })
 export class RendererComponent implements OnInit {
-  public static WIDTH = 12;
-  public static HEIGHT = 8;
-
   private renderers: IRenderer[];
   private lastUpdate: number;
 
@@ -32,11 +30,7 @@ export class RendererComponent implements OnInit {
               private canvasService: CanvasService) {
     this.renderers = [];
 
-    for(let x = 0; x < RendererComponent.WIDTH; x++) {
-      for(let y = 0; y < RendererComponent.HEIGHT; y++) {
-        this.setColor(x, y, { r: 255, g: 255, b: 255}, 1);
-      }
-    }
+    this.clear({ r: 255, g: 255, b: 255 }, 1);
   }
 
   public ngOnInit(): void {
@@ -76,8 +70,16 @@ export class RendererComponent implements OnInit {
     requestAnimationFrame(() => this.updateLoop());
   }
 
+  public clear(color: IColor, brightness: number) {
+    for(let x = 0; x < View.Width; x++) {
+      for(let y = 0; y < View.Height; y++) {
+        this.setColor(x, y, color, brightness);
+      }
+    }
+  }
+
   public setColor(x: number, y: number, color: IColor, brightness: number = undefined) {
-    const index = x+y*RendererComponent.WIDTH;
+    const index = x+y*View.Width;
     this.pixels[index] = {
       x: x,
       y: y,
@@ -87,6 +89,10 @@ export class RendererComponent implements OnInit {
   }
 
   public setBrightness(x: number, y: number, brightness: number) {
-    this.pixels[x+y*RendererComponent.WIDTH].b = brightness;
+    this.get(x, y).b = brightness;
+  }
+
+  public get(x: number, y: number) {
+    return this.pixels[x + y * View.Width];
   }
 }
