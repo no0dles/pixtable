@@ -14,7 +14,9 @@ import {TableService} from "./shared/services/table.service";
 import { RendererComponent } from './shared/components/renderer/renderer.component';
 import {MapperService} from "./shared/services/mapper.service";
 import {appConfig} from "./app.config";
-import { RandomPixelComponent } from './random-pixel/random-pixel.component';;
+import { RandomPixelComponent } from './random-pixel/random-pixel.component';
+import {RunningTextComponent} from "./running-text/running-text.component";
+;
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { RandomPixelComponent } from './random-pixel/random-pixel.component';;
     TetrisComponent,
     AppsComponent,
     RendererComponent,
-    RandomPixelComponent
+    RandomPixelComponent,
+    RunningTextComponent
   ],
   imports: [
     BrowserModule,
