@@ -1,4 +1,4 @@
-import {Component, OnInit, NgZone, EventEmitter, Output, ViewChild, OnDestroy} from '@angular/core';
+import {Component, OnInit, NgZone, EventEmitter, Output, ViewChild, OnDestroy, Input} from '@angular/core';
 import {IRenderer} from "../../models/renderer";
 import {TableService} from "../../services/table.service";
 import {CanvasService} from "../../services/canvas.service";
@@ -21,6 +21,9 @@ export class RendererComponent implements OnInit, OnDestroy {
 
   @ViewChild("canvas")
   public canvas: any;
+
+  @Input()
+  public title: string;
 
   @Output()
   public onUpdate: EventEmitter<number> = new EventEmitter<number>();

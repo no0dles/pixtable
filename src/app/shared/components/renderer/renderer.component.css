@@ -1,0 +1,10 @@
+.canvas-view {
+  display: block;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.view {
+  width: 100%;
+}
