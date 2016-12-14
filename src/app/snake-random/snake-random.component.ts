@@ -12,11 +12,11 @@ export class Direction {
 }
 
 @Component({
-  selector: 'app-running-text',
-  templateUrl: './running-text.component.html',
-  styleUrls: ['./running-text.component.css']
+  selector: 'app-snake-random',
+  templateUrl: './snake-random.component.html',
+  styleUrls: ['./snake-random.component.css']
 })
-export class RunningTextComponent {
+export class SnakeRandomComponent {
 
   private snake: Point[];
 
@@ -62,7 +62,7 @@ export class RunningTextComponent {
   update(delta: number) {
     this.time += delta;
 
-    if(this.time > RunningTextComponent.UpdateInterval) {
+    if(this.time > SnakeRandomComponent.UpdateInterval) {
       this.time = 0;
       this.updateSnake();
     }

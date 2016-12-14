@@ -15,8 +15,7 @@ import { RendererComponent } from './shared/components/renderer/renderer.compone
 import {MapperService} from "./shared/services/mapper.service";
 import {appConfig} from "./app.config";
 import { RandomPixelComponent } from './random-pixel/random-pixel.component';
-import {RunningTextComponent} from "./running-text/running-text.component";
-;
+import {SnakeRandomComponent} from "./snake-random/snake-random.component";;
 
 @NgModule({
   declarations: [
@@ -25,7 +24,7 @@ import {RunningTextComponent} from "./running-text/running-text.component";
     AppsComponent,
     RendererComponent,
     RandomPixelComponent,
-    RunningTextComponent
+    SnakeRandomComponent
   ],
   imports: [
     BrowserModule,
