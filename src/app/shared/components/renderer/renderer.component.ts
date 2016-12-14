@@ -1,4 +1,4 @@
-import {Component, OnInit, NgZone, EventEmitter, Output, ViewChild} from '@angular/core';
+import {Component, OnInit, NgZone, EventEmitter, Output, ViewChild, OnDestroy} from '@angular/core';
 import {IRenderer} from "../../models/renderer";
 import {TableService} from "../../services/table.service";
 import {CanvasService} from "../../services/canvas.service";
@@ -12,9 +12,10 @@ import {View} from "../../models/view";
   templateUrl: './renderer.component.html',
   styleUrls: ['./renderer.component.css']
 })
-export class RendererComponent implements OnInit {
+export class RendererComponent implements OnInit, OnDestroy {
   private renderers: IRenderer[];
   private lastUpdate: number;
+  private running: boolean;
 
   private pixels: IPixel[] = [];
 
@@ -29,6 +30,7 @@ export class RendererComponent implements OnInit {
               private tableService: TableService,
               private canvasService: CanvasService) {
     this.renderers = [];
+    this.running = true;
 
     this.clear({ r: 255, g: 255, b: 255 }, 1);
 
@@ -58,6 +60,10 @@ export class RendererComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.running = false;
+  }
+
   private updateLoop(): void {
     const currentUpdate = new Date().getTime();
 
@@ -68,7 +74,9 @@ export class RendererComponent implements OnInit {
 
     this.lastUpdate = currentUpdate;
 
-    requestAnimationFrame(() => this.updateLoop());
+    if(this.running) {
+      requestAnimationFrame(() => this.updateLoop());
+    }
   }
 
   public clear(color: IColor, brightness: number) {

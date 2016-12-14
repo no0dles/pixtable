@@ -1,0 +1,57 @@
+@import '~@angular/material/core/theming/all-theme';
+
+@include md-core();
+
+$primary-color-dark:   #D32F2F;
+$primary-color:        #F44336;
+$primary-color-light:  #FFCDD2;
+$primary-color-text:   #FFFFFF;
+$accent-color:         #9E9E9E;
+$primary-text-color:   #212121;
+$secondary-text-color: #757575;
+$divider-color:        #BDBDBD;
+
+
+$primary: (
+  50: $primary-color-text,
+  100: $primary-color-light,
+  200: $primary-color-light,
+  300: $primary-color-light,
+  400: $primary-color-light,
+  500: $primary-color,
+  600: $primary-color,
+  700: $primary-color,
+  800: $primary-color-dark,
+  900: $primary-color-dark,
+  A100: $primary-color,
+  A200: $primary-color,
+  A400:$primary-color-dark,
+  A700: $primary-color-dark,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: $white-87-opacity,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+
+
+$pixel-app-primary: md-palette($primary);
+$pixel-app-accent:  md-palette($md-pink, A200, A100, A400);
+
+$pixel-app-warn:    md-palette($md-red);
+
+$pixel-app-theme: md-light-theme($pixel-app-primary, $pixel-app-accent, $pixel-app-warn);
+
+@include angular-material-theme($pixel-app-theme);

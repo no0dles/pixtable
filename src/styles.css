@@ -1,6 +1,6 @@
-@import '~@angular/material/core/theming/prebuilt/indigo-pink.css';
-
 html, body {
   margin: 0;
   padding: 0;
+  background: #ecf0f1;
+  min-height: 100%;
 }
