@@ -31,6 +31,7 @@ export class RendererComponent implements OnInit {
     this.renderers = [];
 
     this.clear({ r: 255, g: 255, b: 255 }, 1);
+
   }
 
   public ngOnInit(): void {
