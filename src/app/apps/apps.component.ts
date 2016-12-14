@@ -18,7 +18,7 @@ export class AppsComponent implements OnInit {
       { name: "Christmas Tree", path: "christmas-tree", description: "" },
       { name: "Tetris", path: "tetris", description: "" },
       { name: "Paint", path: "paint", description: "" },
-      { name: "Running Text", path: "running-text", description: "" }
+      { name: "Random Pixel", path: "random-pixel", description: "" }
     ];
   }
 
