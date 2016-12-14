@@ -24,7 +24,7 @@ export class CanvasService implements IRenderer {
     this.context.clearRect(0, 0, View.Width * CanvasService.PIXEL_SIZE, View.Height * CanvasService.PIXEL_SIZE);
 
     for(var pixel of pixels) {
-      this.context.fillStyle = `rgba(${pixel.c.r}, ${pixel.c.g}, ${pixel.c.b}, ${pixel.b})`;
+      this.context.fillStyle = `rgba(${Math.min(255, pixel.c.r)}, ${Math.min(255, pixel.c.g)}, ${Math.min(255, pixel.c.b)}, ${pixel.b})`;
       this.context.fillRect(pixel.x * CanvasService.PIXEL_SIZE, pixel.y * CanvasService.PIXEL_SIZE, CanvasService.PIXEL_SIZE, CanvasService.PIXEL_SIZE);
     }
   }

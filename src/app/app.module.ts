@@ -12,13 +12,16 @@ import { MaterialModule } from '@angular/material';
 import {CanvasService} from "./shared/services/canvas.service";
 import {TableService} from "./shared/services/table.service";
 import { RendererComponent } from './shared/components/renderer/renderer.component';
+import {MapperService} from "./shared/services/mapper.service";
+import {RunningTextComponent} from "./running-text/running-text.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     TetrisComponent,
     AppsComponent,
-    RendererComponent
+    RendererComponent,
+    RunningTextComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,7 @@ import { RendererComponent } from './shared/components/renderer/renderer.compone
     MaterialModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [TableService, CanvasService],
+  providers: [TableService, CanvasService, MapperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
