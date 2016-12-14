@@ -15,9 +15,8 @@ import { RendererComponent } from './shared/components/renderer/renderer.compone
 import {MapperService} from "./shared/services/mapper.service";
 import {appConfig} from "./app.config";
 import { RandomPixelComponent } from './random-pixel/random-pixel.component';
-import {SnakeRandomComponent} from "./snake-random/snake-random.component";;
-import { RandomPixelComponent } from './random-pixel/random-pixel.component';
-import { ChristmasTreeComponent } from './christmas-tree/christmas-tree.component';;
+import {SnakeRandomComponent} from "./snake-random/snake-random.component";
+import { ChristmasTreeComponent } from './christmas-tree/christmas-tree.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +24,7 @@ import { ChristmasTreeComponent } from './christmas-tree/christmas-tree.componen
     TetrisComponent,
     AppsComponent,
     RendererComponent,
-    RandomPixelComponent,
-    SnakeRandomComponent
+    SnakeRandomComponent,
     RandomPixelComponent,
     ChristmasTreeComponent
   ],

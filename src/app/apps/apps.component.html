@@ -2,13 +2,10 @@
   <span>{{title}}</span>
 </md-toolbar>
 
-<md-card *ngFor="let app of apps">
-  <md-card-title>{{app.name}}</md-card-title>
-  <md-card-content>
-    <p>{{app.description}}</p>
-  </md-card-content>
-  <md-card-actions>
-    <button (click)="open(app, 'table')" md-button>TABLE</button>
-    <button (click)="open(app, 'renderer')" md-button>CANVAS</button>
-  </md-card-actions>
-</md-card>
+<md-list class="app-list">
+  <md-list-item *ngFor="let app of apps">
+    <h3 md-line> {{app.name}} </h3>
+    <p md-line> {{app.description}} </p>
+    <button md-raised-button color="primary" (click)="open(app, 'table')">OPEN</button>
+  </md-list-item>
+</md-list>

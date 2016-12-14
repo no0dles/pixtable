@@ -15,11 +15,11 @@ export class AppsComponent implements OnInit {
 
   ngOnInit() {
     this.apps = [
-      { name: "Christmas Tree", path: "christmas-tree", description: "" },
-      { name: "Tetris", path: "tetris", description: "" },
-      { name: "Snake Random", path: "snake-random", description: "" },
-      { name: "Paint", path: "paint", description: "" },
-      { name: "Random Pixel", path: "random-pixel", description: "" }
+      { name: "Christmas Tree", path: "christmas-tree", description: "Animation" },
+      { name: "Tetris", path: "tetris", description: "Game" },
+      { name: "Snake Random", path: "snake-random", description: "Animation" },
+      { name: "Paint", path: "paint", description: "Application" },
+      { name: "Random Pixel", path: "random-pixel", description: "Animation" }
     ];
   }
 

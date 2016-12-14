@@ -1,7 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {RendererComponent} from "../shared/components/renderer/renderer.component";
-import {forEach} from "@angular/router/src/utils/collection";
-import {Dir} from "@angular/material";
 
 export class Point {
   constructor(public x: number, public y: number) {}
