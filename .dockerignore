@@ -1,0 +1,11 @@
+.git
+.gitignore
+.env*
+.idea
+
+node_modules
+e2e
+
+**/*.spec.ts
+
+docker-compose*.yml
