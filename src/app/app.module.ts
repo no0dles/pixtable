@@ -43,6 +43,9 @@ import { CircleComponent } from './circle/circle.component';
     MapperService,
     { provide: 'config', useValue: appConfig }
   ],
+  exports: [
+    AppsComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

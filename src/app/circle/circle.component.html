@@ -1,17 +1,19 @@
-<app-renderer title="Circle" #renderer (onUpdate)="update($event)"></app-renderer>
+<div class="container">
+  <app-renderer class="renderer" title="Circle" #renderer (onUpdate)="update($event)"></app-renderer>
 
-<div class="controls">
-  <button class="left" (click)="turnLeft()">
-    <i class="fa fa-3x fa-arrow-left" aria-hidden="true"></i>
-  </button>
-  <button class="right" (click)="turnRight()">
-    <i class="fa fa-3x fa-arrow-right" aria-hidden="true"></i>
-  </button>
-  <button class="up" (click)="turnUp()">
-    <i class="fa fa-3x fa-arrow-up" aria-hidden="true"></i>
-  </button>
-  <button class="down" (click)="turnDown()">
-    <i class="fa fa-3x fa-arrow-down" aria-hidden="true"></i>
-  </button>
+  <div class="controls">
+    <button class="left" [ngClass]="{'active': direction === 1}" (click)="turnLeft()">
+      <i class="fa fa-3x fa-arrow-left" aria-hidden="true"></i>
+    </button>
+    <button class="right" [ngClass]="{'active': direction === 3}" (click)="turnRight()">
+      <i class="fa fa-3x fa-arrow-right" aria-hidden="true"></i>
+    </button>
+    <button class="up" [ngClass]="{'active': direction === 2}" (click)="turnUp()">
+      <i class="fa fa-3x fa-arrow-up" aria-hidden="true"></i>
+    </button>
+    <button class="down" [ngClass]="{'active': direction === 4}" (click)="turnDown()">
+      <i class="fa fa-3x fa-arrow-down" aria-hidden="true"></i>
+    </button>
 
+  </div>
 </div>
