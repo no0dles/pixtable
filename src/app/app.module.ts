@@ -17,6 +17,7 @@ import {appConfig} from "./app.config";
 import { RandomPixelComponent } from './random-pixel/random-pixel.component';
 import {SnakeRandomComponent} from "./snake-random/snake-random.component";
 import { ChristmasTreeComponent } from './christmas-tree/christmas-tree.component';
+import { CircleComponent } from './circle/circle.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ChristmasTreeComponent } from './christmas-tree/christmas-tree.componen
     RendererComponent,
     SnakeRandomComponent,
     RandomPixelComponent,
-    ChristmasTreeComponent
+    ChristmasTreeComponent,
+    CircleComponent
   ],
   imports: [
     BrowserModule,

@@ -18,7 +18,7 @@ export class SnakeRandomComponent {
 
   private snake: Point[];
 
-  private pascals: number = 10;
+  private pascals: number = 50;
   private time = 0;
 
   private static UpdateInterval = 100;
@@ -29,6 +29,7 @@ export class SnakeRandomComponent {
   constructor() {
     this.initSnake();
   }
+
 
   initSnake() {
     this.snake = [];
@@ -191,7 +192,7 @@ export class SnakeRandomComponent {
 
   paintSnake() {
     for (let snakePart of this.snake) {
-      this.renderer.setColor(snakePart.x, snakePart.y, {r: 0, g: 128, b: 128});
+      this.renderer.setColor(snakePart.x, snakePart.y, {r: 0, g: 255, b: 255});
     }
   }
 }

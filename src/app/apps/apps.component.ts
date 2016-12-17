@@ -19,7 +19,8 @@ export class AppsComponent implements OnInit {
       { name: "Tetris", path: "tetris", description: "Game" },
       { name: "Snake Random", path: "snake-random", description: "Animation" },
       { name: "Paint", path: "paint", description: "Application" },
-      { name: "Random Pixel", path: "random-pixel", description: "Animation" }
+      { name: "Random Pixel", path: "random-pixel", description: "Animation" },
+      { name: "Circle", path: "circle", description: "Animation" }
     ];
   }
 

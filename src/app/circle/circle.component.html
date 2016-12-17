@@ -1,0 +1,17 @@
+<app-renderer title="Circle" #renderer (onUpdate)="update($event)"></app-renderer>
+
+<div class="controls">
+  <button class="left" (click)="turnLeft()">
+    <i class="fa fa-3x fa-arrow-left" aria-hidden="true"></i>
+  </button>
+  <button class="right" (click)="turnRight()">
+    <i class="fa fa-3x fa-arrow-right" aria-hidden="true"></i>
+  </button>
+  <button class="up" (click)="turnUp()">
+    <i class="fa fa-3x fa-arrow-up" aria-hidden="true"></i>
+  </button>
+  <button class="down" (click)="turnDown()">
+    <i class="fa fa-3x fa-arrow-down" aria-hidden="true"></i>
+  </button>
+
+</div>
