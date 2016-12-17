@@ -38,6 +38,7 @@
 .controls .active {
   background: #f7f9f9;
   border: 1px solid #d5e0e0;
+  color: #f44336;
 }
 
 .controls .up {
