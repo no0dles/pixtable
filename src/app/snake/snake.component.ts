@@ -195,10 +195,12 @@ export class SnakeComponent implements OnInit{
 
     console.log(this.snake.length);
 
-    var obj = PixelFont.getText(this.snake.length.toString());
+    const text = PixelFont.getText(this.snake.length.toString());
+    const offsetY = 1;
+    const offsetX = Math.floor((12 - text.offset) / 2);
 
-    for(var i = 0; i < obj.length; i+=2) {
-      this.renderer.setColor(obj[i], obj[i+1], { r: 255, g: 255, b: 255 });
+    for(var i = 0; i < text.pixels.length; i+=2) {
+      this.renderer.setColor(text.pixels[i] + offsetX, text.pixels[i+1] + offsetY, { r: 255, g: 255, b: 255 });
     }
   }
 

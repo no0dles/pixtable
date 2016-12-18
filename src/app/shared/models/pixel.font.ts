@@ -10,7 +10,6 @@ export class PixelFont {
     const result = [];
 
     for(var chr of text) {
-      console.log(chr);
       const positions = PixelFont.getChar(chr);
       for(var y = 0; y < positions.length; y++) {
         switch (positions[y]) {
@@ -18,7 +17,7 @@ export class PixelFont {
             result.push(offset);
             result.push(y);
             break;
-          case P.Right:
+          case P.Middle:
             result.push(offset+1);
             result.push(y);
             break;
@@ -46,7 +45,10 @@ export class PixelFont {
       offset += 4;
     }
 
-    return result;
+    return {
+      pixels: result,
+      offset: offset
+    };
   }
 
   static getChar(chr: string) {
@@ -62,11 +64,11 @@ export class PixelFont {
 
       case '1':
         return [
-          P.Middle,
-          P.Middle,
-          P.Middle,
-          P.Middle,
-          P.Middle
+          P.Right,
+          P.Right,
+          P.Right,
+          P.Right,
+          P.Right
         ];
 
       case '2':
