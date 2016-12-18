@@ -18,6 +18,7 @@ import { RandomPixelComponent } from './random-pixel/random-pixel.component';
 import { RandomSnakeComponent } from "./random-snake/random-snake.component";
 import { ChristmasTreeComponent } from './christmas-tree/christmas-tree.component';
 import { SnakeComponent } from "./snake/snake.component";
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SnakeComponent } from "./snake/snake.component";
     RandomSnakeComponent,
     RandomPixelComponent,
     ChristmasTreeComponent,
-    SnakeComponent
+    SnakeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
