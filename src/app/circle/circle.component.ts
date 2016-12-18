@@ -30,41 +30,53 @@ export class CircleComponent implements OnInit{
 
   private guetzli: Point;
 
+  private fats: Point[];
+
   private gameOver: boolean = false;
 
-  private direction: Direction = Direction.Left;
+  private direction: Direction = Direction.Right;
+  private directionBefore: Direction = Direction.Right;
   private time = 0;
+  private timeout = 0;
+  private resultTime = 0;
 
   private static UpdateInterval = 200;
+  private static GameOverTimeOut = 4000;
+  private static ResultTimer = 4000;
 
   @ViewChild("renderer")
   public renderer: RendererComponent;
 
   constructor() {
-
+    this.fats = [];
   }
 
   turnLeft() {
-    if(this.direction !== Direction.Right)
+    if(this.directionBefore !== Direction.Right) {
       this.direction = Direction.Left;
+    }
   }
 
   turnRight() {
-    if(this.direction !== Direction.Left)
+    if(this.directionBefore !== Direction.Left) {
       this.direction = Direction.Right;
+    }
   }
 
   turnUp() {
-    if(this.direction !== Direction.Down)
+    if(this.directionBefore !== Direction.Down) {
       this.direction = Direction.Up;
+    }
   }
 
   turnDown() {
-    if(this.direction !== Direction.Up)
+    if(this.directionBefore !== Direction.Up) {
       this.direction = Direction.Down;
+    }
   }
 
   keyPress(event: KeyboardEvent) {
+
     if(event.keyCode === 37)
       this.turnLeft();
 
@@ -81,13 +93,15 @@ export class CircleComponent implements OnInit{
   ngOnInit(): void {
     this.initSnake();
     this.initGuetzli();
+    this.gameOver = false;
+    this.direction = Direction.Right;
   }
 
   initSnake() {
     this.snake = [];
 
     for (let i = 0; i < this.startSnakeLength; i++) {
-      this.snake.push(new Point(5, 5));
+      this.snake.push(new Point(i, 5));
     }
   }
 
@@ -96,23 +110,63 @@ export class CircleComponent implements OnInit{
   }
 
   initGuetzli() {
-    this.guetzli = new Point(this.getRandom(11), this.getRandom(7));
+
+    let p = this.getRandomPoint();
+    while(!this.isThereSnake(p)){
+      p = this.getRandomPoint();
+    }
+
+    this.guetzli = p;
+  }
+
+  getRandomPoint() {
+    return new Point(this.getRandom(11), this.getRandom(7));
   }
 
   update(delta: number) {
     this.time += delta;
 
-    if(this.time > CircleComponent.UpdateInterval) {
-      this.time = 0;
-      this.updateSnake();
+    if(!this.gameOver) {
+      if (this.time > CircleComponent.UpdateInterval) {
+        this.time = 0;
+        this.updateSnake();
+      }
+    } else {
+
+      this.timeout += delta;
+      if(this.timeout > CircleComponent.GameOverTimeOut) {
+
+        this.resultTime += delta;
+
+        this.gameOverScreen();
+
+        if(this.resultTime > CircleComponent.ResultTimer) {
+
+          this.timeout = 0;
+          this.resultTime = 0;
+          this.ngOnInit();
+        }
+
+      }
     }
   }
 
   updateSnake() {
+    this.directionBefore = this.direction;
     this.moveSnake();
     this.paintSnake();
   }
 
+  gameOverScreen() {
+
+    for(let i = 0; i < 12; i++)
+      for(let k = 0; k < 8; k++)
+        this.renderer.setColor(i, k, {r: 0, g: 0, b: 0});
+
+    console.log(this.snake.length);
+
+
+  }
 
 
   moveSnake() {
@@ -151,11 +205,10 @@ export class CircleComponent implements OnInit{
 
     if(this.snake[this.snake.length - 1].x === this.guetzli.x
     && this.snake[this.snake.length - 1].y === this.guetzli.y) {
-      this.snake.push(new Point(this.guetzli.x, this.guetzli.y));
+      this.fats.push(new Point(this.guetzli.x, this.guetzli.y));
       this.initGuetzli();
 
     }
-
   }
 
 
@@ -173,6 +226,27 @@ export class CircleComponent implements OnInit{
     //clear field
     this.renderer.clear({r: 0, g: 0, b: 0}, 1);
 
+
+    let burnCalories = [];
+    for(let fat = 0; fat < this.fats.length; fat++) {
+      let fatHasPlace = true;
+
+      for(let item of this.snake) {
+        if(item.x === this.fats[fat].x && item.y === this.fats[fat].y) {
+          fatHasPlace = false;
+          continue;
+        }
+      }
+
+      if(fatHasPlace) {
+        this.snake.splice(0, 0,this.fats[fat]);
+        burnCalories.push(fat);
+      }
+    }
+
+    for(let index of burnCalories)
+      this.fats.splice(index, 1);
+
     //paint all snake fields
     for (let snakePart of this.snake) {
       this.renderer.setColor(snakePart.x, snakePart.y, {r: 0, g: 150, b: 150});
@@ -185,25 +259,29 @@ export class CircleComponent implements OnInit{
     //paint guetzli
     this.renderer.setColor(this.guetzli.x, this.guetzli.y, {r: 255, g: 255, b: 0});
 
+    this.paintCollisions();
+  }
+
+  paintCollisions()
+  {
     //Count collisions
     let tmpSnake = this.snake;
     let collisions = [];
-    for(let item of this.snake) {
+    for (let item of this.snake) {
       let count = 0;
-      for(let tmpItem of tmpSnake) {
-        if(item.x === tmpItem.x && item.y === tmpItem.y)
+      for (let tmpItem of tmpSnake) {
+        if (item.x === tmpItem.x && item.y === tmpItem.y)
           count++;
       }
-      if(count > 1)
+      if (count > 1)
         collisions.push(item);
     }
 
-    if(collisions.length > 0) {
+    if (collisions.length > 0) {
       this.gameOver = true;
 
-      for(let item of collisions)
+      for (let item of collisions)
         this.renderer.setColor(item.x, item.y, {r: 255, g: 0, b: 0});
     }
-
   }
 }
