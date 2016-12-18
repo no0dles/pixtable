@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {RendererComponent} from "../shared/components/renderer/renderer.component";
+import {PixelFont} from "../shared/models/pixel.font";
 
 export class Point {
   constructor(public x: number, public y: number) {}
@@ -90,8 +91,6 @@ export class SnakeComponent implements OnInit{
   }
 
   keyDown(event: KeyboardEvent) {
-
-    console.log(event);
 
     if(event.keyCode === 80 || event.keyCode === 32)
       this.pause = !this.pause;
@@ -196,7 +195,11 @@ export class SnakeComponent implements OnInit{
 
     console.log(this.snake.length);
 
+    var obj = PixelFont.getText(this.snake.length.toString());
 
+    for(var i = 0; i < obj.length; i+=2) {
+      this.renderer.setColor(obj[i], obj[i+1], { r: 255, g: 255, b: 255 });
+    }
   }
 
 
