@@ -17,12 +17,13 @@ export class AppsComponent implements OnInit {
     this.apps = [
       { name: "Christmas Tree", path: "christmas-tree", description: "Animation" },
       { name: "Tetris", path: "tetris", description: "Game" },
-      { name: "Snake Random", path: "snake-random", description: "Animation" },
+      { name: "Random Snake", path: "random-snake", description: "Animation" },
       { name: "Paint", path: "paint", description: "Application" },
       { name: "Random Pixel", path: "random-pixel", description: "Animation" },
-      { name: "Circle", path: "circle", description: "Animation" }
+      { name: "Snake", path: "snake", description: "Game" }
     ];
   }
+
 
   open(app: any, renderer: string) {
     this.router.navigate([app.path], { queryParams: { 'renderer': renderer }});

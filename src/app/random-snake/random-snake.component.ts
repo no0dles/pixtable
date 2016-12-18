@@ -10,15 +10,15 @@ export class Direction {
 }
 
 @Component({
-  selector: 'app-snake-random',
-  templateUrl: './snake-random.component.html',
-  styleUrls: ['./snake-random.component.css']
+  selector: 'app-random-snake',
+  templateUrl: './random-snake.component.html',
+  styleUrls: ['./random-snake.component.css']
 })
-export class SnakeRandomComponent {
+export class RandomSnakeComponent {
 
   private snake: Point[];
 
-  private pascals: number = 50;
+  private pascals: number = 15;
   private time = 0;
 
   private static UpdateInterval = 100;
@@ -61,7 +61,7 @@ export class SnakeRandomComponent {
   update(delta: number) {
     this.time += delta;
 
-    if(this.time > SnakeRandomComponent.UpdateInterval) {
+    if(this.time > RandomSnakeComponent.UpdateInterval) {
       this.time = 0;
       this.updateSnake();
     }

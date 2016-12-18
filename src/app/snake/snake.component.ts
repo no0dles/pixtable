@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {RendererComponent} from "../shared/components/renderer/renderer.component";
-import {View} from "../shared/models/view";
 
 export class Point {
   constructor(public x: number, public y: number) {}
@@ -14,14 +13,14 @@ export enum Direction {
 }
 
 @Component({
-  selector: 'app-circle',
-  templateUrl: './circle.component.html',
-  styleUrls: ['./circle.component.css'],
+  selector: 'app-snake',
+  templateUrl: './snake.component.html',
+  styleUrls: ['./snake.component.css'],
   host: {
     '(document:keydown)': 'keyPress($event)'
   }
 })
-export class CircleComponent implements OnInit{
+export class SnakeComponent implements OnInit{
 
 
   private startSnakeLength = 3;
@@ -127,20 +126,20 @@ export class CircleComponent implements OnInit{
     this.time += delta;
 
     if(!this.gameOver) {
-      if (this.time > CircleComponent.UpdateInterval) {
+      if (this.time > SnakeComponent.UpdateInterval) {
         this.time = 0;
         this.updateSnake();
       }
     } else {
 
       this.timeout += delta;
-      if(this.timeout > CircleComponent.GameOverTimeOut) {
+      if(this.timeout > SnakeComponent.GameOverTimeOut) {
 
         this.resultTime += delta;
 
         this.gameOverScreen();
 
-        if(this.resultTime > CircleComponent.ResultTimer) {
+        if(this.resultTime > SnakeComponent.ResultTimer) {
 
           this.timeout = 0;
           this.resultTime = 0;

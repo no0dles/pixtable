@@ -1,5 +1,5 @@
 <div class="container">
-  <app-renderer class="renderer" title="Circle" #renderer (onUpdate)="update($event)"></app-renderer>
+  <app-renderer class="renderer" title="Snake" #renderer (onUpdate)="update($event)"></app-renderer>
 
   <div class="controls">
     <button class="left" [ngClass]="{'active': direction === 1}" (click)="turnLeft()">

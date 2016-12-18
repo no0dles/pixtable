@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { CircleComponent } from './circle.component';
+import { RandomSnakeComponent } from './random-snake.component';
 
-describe('CircleComponent', () => {
-  let component: CircleComponent;
-  let fixture: ComponentFixture<CircleComponent>;
+describe('RandomSnakeComponent', () => {
+  let component: RandomSnakeComponent;
+  let fixture: ComponentFixture<RandomSnakeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CircleComponent ]
+      declarations: [ RandomSnakeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CircleComponent);
+    fixture = TestBed.createComponent(RandomSnakeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
