@@ -17,7 +17,7 @@ export enum Direction {
   templateUrl: './snake.component.html',
   styleUrls: ['./snake.component.css'],
   host: {
-    '(document:keydown)': 'keyPress($event)'
+    '(document:keydown)': 'keyDown($event)'
   }
 })
 export class SnakeComponent implements OnInit{
@@ -33,13 +33,18 @@ export class SnakeComponent implements OnInit{
 
   private gameOver: boolean = false;
 
+  private pause : boolean = true;
+
+  private directions: Direction[];
+
   private direction: Direction = Direction.Right;
   private directionBefore: Direction = Direction.Right;
+
   private time = 0;
   private timeout = 0;
   private resultTime = 0;
 
-  private static UpdateInterval = 200;
+  private static UpdateInterval = 150;
   private static GameOverTimeOut = 4000;
   private static ResultTimer = 4000;
 
@@ -48,33 +53,49 @@ export class SnakeComponent implements OnInit{
 
   constructor() {
     this.fats = [];
+    this.directions = [];
+  }
+
+  get previousDirection() {
+    if(this.directions.length > 0) {
+      return this.directions[this.directions.length -1];
+    } else {
+      return this.directionBefore;
+    }
+
   }
 
   turnLeft() {
-    if(this.directionBefore !== Direction.Right) {
-      this.direction = Direction.Left;
+    if(this.previousDirection !== Direction.Right) {
+      this.directions.push(Direction.Left);
     }
   }
 
   turnRight() {
-    if(this.directionBefore !== Direction.Left) {
-      this.direction = Direction.Right;
+    if(this.previousDirection !== Direction.Left) {
+      this.directions.push(Direction.Right);
     }
   }
 
   turnUp() {
-    if(this.directionBefore !== Direction.Down) {
-      this.direction = Direction.Up;
+    if(this.previousDirection !== Direction.Down) {
+      this.directions.push(Direction.Up);
     }
   }
 
   turnDown() {
-    if(this.directionBefore !== Direction.Up) {
-      this.direction = Direction.Down;
+    if(this.previousDirection !== Direction.Up) {
+      this.directions.push(Direction.Down);
     }
   }
 
-  keyPress(event: KeyboardEvent) {
+  keyDown(event: KeyboardEvent) {
+
+    console.log(event);
+
+    if(event.keyCode === 80 || event.keyCode === 32)
+      this.pause = !this.pause;
+
 
     if(event.keyCode === 37)
       this.turnLeft();
@@ -92,6 +113,7 @@ export class SnakeComponent implements OnInit{
   ngOnInit(): void {
     this.initSnake();
     this.initGuetzli();
+    this.pause = false;
     this.gameOver = false;
     this.direction = Direction.Right;
   }
@@ -123,34 +145,44 @@ export class SnakeComponent implements OnInit{
   }
 
   update(delta: number) {
-    this.time += delta;
+    if(!this.pause) {
+      this.time += delta;
 
-    if(!this.gameOver) {
-      if (this.time > SnakeComponent.UpdateInterval) {
-        this.time = 0;
-        this.updateSnake();
-      }
-    } else {
 
-      this.timeout += delta;
-      if(this.timeout > SnakeComponent.GameOverTimeOut) {
-
-        this.resultTime += delta;
-
-        this.gameOverScreen();
-
-        if(this.resultTime > SnakeComponent.ResultTimer) {
-
-          this.timeout = 0;
-          this.resultTime = 0;
-          this.ngOnInit();
+      if(!this.gameOver) {
+        if (this.time > SnakeComponent.UpdateInterval) {
+          this.time = 0;
+          this.updateSnake();
         }
+      } else {
 
+        this.timeout += delta;
+        if(this.timeout > SnakeComponent.GameOverTimeOut) {
+
+          this.resultTime += delta;
+
+          this.gameOverScreen();
+
+          if(this.resultTime > SnakeComponent.ResultTimer) {
+
+            this.timeout = 0;
+            this.resultTime = 0;
+            this.ngOnInit();
+          }
+
+        }
       }
+
     }
   }
 
   updateSnake() {
+
+    if(this.directions.length > 0) {
+      this.direction = this.directions[0];
+      this.directions.splice(0, 1);
+    }
+
     this.directionBefore = this.direction;
     this.moveSnake();
     this.paintSnake();
