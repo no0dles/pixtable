@@ -1,0 +1,19 @@
+box: node
+
+build:
+  steps:
+    - npm-install
+
+    - script:
+        name: echo nodejs information
+        code: |
+          echo "node version $(node -v) running"
+          echo "npm version $(npm -v) running"
+
+    - script:
+        name: install angular-cli
+        code: npm install -g angular-cli@"1.0.0-beta.22-1"
+
+    - script:
+        name: build production
+        code: ng build -prod
